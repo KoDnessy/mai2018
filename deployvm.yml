@@ -1,0 +1,59 @@
+---
+- hosts: webservers
+  gather_facts: false
+  connection: local
+ 
+  vars_prompt:
+    - name: "Prisonier2015$"
+      prompt: "Prisonier2015$"
+    - name: "notes"
+      prompt: "VM notes"
+      private: no
+      default: "Deployed with ansible"
+ 
+  tasks:
+ #   get date
+  - set_fact: creationdate="{{lookup('pipe','date "+%Y/%m/%d %H:%M"')}}"
+    # Create a VM from a template
+  - name: create the VM
+    vmware_guest:
+        hostname: 10.1.1.134
+        username: 'administrateur@supca.lan'
+        password: 'prisonier2015$'
+        validate_certs: no
+        esxi_hostname: esxi1.supca.lan
+        datacenter: 'Clusty'
+        folder: 'vms'
+        name: 'newone'
+        state: poweredon
+        guest_id: rhel7_64Guest
+    #    annotation: ""
+        disk:
+        - size_gb: 2
+          type: thin
+    #      datastore: '{{ vsphere_datastore }}'
+        networks:
+        - name: server_network
+          ip: 10.1.1.180
+          netmask: 255.255.252.0
+    #      gateway: 
+          dns_servers:
+                - 10.1.1.129
+    #            - 192.168.101.10
+        hardware:
+          memory_mb: 1500
+          num_cpus: 2
+    #    customization:
+    #         dns_servers:
+    #          - 192.168.100.10
+    #                     - 192.168.101.10
+    #      domain : zwindler.fr
+    #       hostname: '{{ inventory_hostname }}'
+        template: CentOS-7-x86_64-DVD-1708.iso
+    #     wait_for_ip_address: yes
+ 
+   # - name: add to ansible hosts file
+   #                      lineinfile:
+   #               dest: /etc/ansible/hosts
+  #                                                                                                                                                                                                                                                                         insertafter: '^\[{{ ansible_host_group }}\]'
+  #                                                                                                                                                                                                                                                                               line: '{{ inventory_hostname }}'

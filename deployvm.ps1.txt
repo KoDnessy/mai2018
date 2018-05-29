@@ -1,0 +1,1 @@
+New-VM -Name clone1 -Template modele -VMHost 10.1.1.131

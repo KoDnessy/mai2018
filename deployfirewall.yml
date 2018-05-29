@@ -1,0 +1,25 @@
+
+---
+
+- name : Deploiement des regles du firewall
+  hosts : firewall
+  sudo : True
+  tasks :
+
+
+    - name: copier le fichier .sh a lancer
+      copy: 
+        src: /etc/ansible/firewall.sh 
+        dest: /home/kod 
+        owner: kod 
+        group: kod
+        mode: 0777
+        backup: yes
+
+    - name : Lancer le firewall.sh
+      script: /home/kod/firewall.sh 
+
+    - name: relancer le firewall
+      service : 
+         name: firewall 
+         state: restarted

@@ -1,0 +1,60 @@
+
+
+---------------Préparation du projet----------------------
+
+Pas d'équipe = alone
+
+Infrastructure (Data Center)
+Un AD
+Un Vcenter
+Un ESXI
+Un ESXI
+Un NAAS
+
+Un VPN
+
+Infra avec sortie vers Internet
+
+
+
+
+Informations du serveur cible :  10.1.1.133  
+ Nom :  vcenter1  
+ Type d'installation :  Installer  
+ Type de déploiement :  Instance intégrée de Platform Services Controller  
+ Configuration du déploiement :  Minuscule (jusqu'à 10 hôtes, 100 machines virtuelles)  
+ Banque de données :  datastore1  
+ Mode Disque :  thin  
+ Mappage de réseau :  Network 1 to VM Network  
+ Allocation d'IP :  IPv4 , DHCP  
+ Nom d'hôte    
+ Synchronisation de l'heure :  Synchroniser l'heure du dispositif avec l'hôte ESXi  
+ Base de données :  embedded  
+ Propriétés :  
+SSH activé = True
+
+Programme d'amélioration du produit = Désactivé
+
+Nom d'utilisateur SSO = administrator
+
+Nom de domaine SSO = vsphere.loca
+
+Nom du site SSO = site 
+
+
+Installation terminée 
+ 
+
+Votre vCenter Server est correctement installé.
+
+Étapes de post-installation :
+1.vCenter Server est installé en mode d'évaluation. Activez vCenter Server en utilisant vSphere Web Client dans les 60 jours. Lorsque la période d'évaluation de ce vCenter Server expirera, tous les hôtes seront déconnectés de ce vCenter Server.
+2.Utilisez vSphere Web Client pour gérer vCenter Server. Connectez-vous avec le compte d'administrateur de Single Sign-On administrator@vsphere.loca
+Vous pouvez maintenant vous connecter à vSphere Web Client :  https://10.1.1.134/vsphere-client as administrator@vsphere.loca 
+
+
+
+
+
+
+

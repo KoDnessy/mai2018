@@ -1,0 +1,33 @@
+
+
+---
+
+- name : Installation de DHCP
+  hosts : dhcp
+  sudo : True
+  tasks :
+
+    - name: installer les mises a jour necessaire
+      yum:
+        name: dhcp
+        update_cache: yes
+        state: latest
+
+#    - name: install vim
+
+#      yum:
+#        name: vim
+#        update_cache: yes
+#        state: latest
+    - name: remove l ancien fichier de conf 
+      file: 
+        path: '/etc/dhcp/dhcpd.conf' 
+        state: absent 
+
+    - name: copy the file
+      copy: src=/etc/ansible/dhcpd.conf dest=/etc/dhcp/ owner=root group=root mode=0644 backup=yes
+
+    - name: lancer le dhcp
+      service : 
+        name: dhcpd 
+        state: restarted
